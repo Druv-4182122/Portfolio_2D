@@ -6,18 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "vercel --prod"
   },
- 
   "devDependencies": {
     "vite": "^7.0.4",
     "vite-plugin-glsl": "^1.5.1",
     "vite-plugin-restart": "^1.0.0"
   },
-
   "dependencies": {
     "cannon-es": "^0.20.0",
     "three": "^0.178.0",
-    "tweakpane": "^4.0.5"
+    "tweakpane": "^4.0.5",
+    "vercel": "^48.0.2"
   }
 }
