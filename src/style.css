@@ -1,0 +1,345 @@
+/* Variables declared here - these are the colors for our pages, as well as the font stacks and sizes. */
+
+:root {
+    --black: #251f39;
+    --dkblue: #fe6b02;
+    --plum: #201F1E;
+    --magenta: #f7933c;
+    --aqua: #32de84;
+    --white: #f7f8fa;
+    --font-size: 1.3rem;
+    --mono: "Oxygen mono", monospace;
+    --sans: Oxygen, sans-serif;
+    --actualblack : black
+}
+
+
+/* border box model: https://css-tricks.com/box-sizing/ */
+
+html {
+    box-sizing: border-box;
+    
+}
+
+/* html, body {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity; 
+} */
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+/* generic styles for the page */
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--white);
+    font-size: var(--font-size);
+    overflow-x: hidden;
+    background-color: #201F1E;
+}
+::selection{
+    background: #fe6b02;
+    color: #1c0223;
+}
+body::-webkit-scrollbar{
+    display: none;
+    width:0
+}
+
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+a {
+    color: var(--white);
+}
+
+img {
+    width: 100%;
+}
+
+/* NEW CONTAINER STYLE */
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4rem 1rem 0 1rem;
+    gap: 8rem;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+
+/* intro styles */
+
+#intro {
+    padding-bottom: 5rem;
+}
+
+#intro p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+#intro .name {
+    font-family: var(--mono);
+    font-size: 1rem;
+}
+
+.name span {
+    font-family: var(--sans);
+    font-size: 2.5rem;
+    color: var(--white);
+
+    font-weight: 300;
+}
+
+#intro h2 {
+    font-size: 2rem;
+}
+#intro h5 {
+    line-height: 1.5;
+}
+
+
+/* contact section */
+
+/* navigation */
+
+nav {
+    font-family: var(--mono);
+    font-size: 80%;
+    font-weight: bold;
+}
+
+nav h1 a {
+    font-family: var(--sans);
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav li:first-child {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+nav [class*="fa-"] {
+    font-size: 150%;
+    color: var(--white);
+}
+
+nav h1 [class*="fa-"] {
+    font-size: 100%;
+    color: var(--white);
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+}
+
+.button {
+
+    background-color: var(--white);
+    color: var(--plum);
+    padding: 10px;
+    border-radius: 10px;
+    display: block;
+    text-decoration: none;
+    /* font-family: var(--mono); */
+    font-weight: bold;
+}
+
+.button:hover {
+    color: var(--plum);
+    /* background-color: #001F23; */
+}
+
+/* footer section */
+
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    font-size: 3.5rem;
+}
+
+@media (min-width: 850px) {
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    nav li:first-child {
+        flex-basis: auto;
+        text-align: left;
+        margin-right: auto;
+    }
+}
+
+/* --- Projects Section --- */
+#projects {
+    /* padding: 4rem 1rem; */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#projects h2 {
+    font-size: 2.5rem;
+    /* text-align: center; */
+    margin-bottom: 3rem;
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Project Card Styling */
+.project-card {
+    background-color: var(--plum); /* A slightly lighter background than the page */
+    border-radius: 25px;
+    overflow: hidden; /* This makes the image corners conform to the border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1400px; /* Adjust as needed */
+    border: 5px solid var(--white);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    display: block; /* Removes any extra space below the image */
+}
+
+.project-details {
+    padding: 1.5rem;
+}
+
+.project-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--white); /* Using your orange color for titles */
+}
+
+.project-details p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Tech Stack Tags */
+.tech-stack {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+/* Project Links (Live Demo, GitHub) */
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-links a {
+    color: var(--white);
+    font-size: 2rem;
+    transition: color 0.3s ease;
+}
+
+/* .project-links a:hover {
+    color: var(--dkblue);
+} */
+
+/* --- New Project Info Columns --- */
+.project-info-columns {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    gap: 1.5rem; /* Adds space between columns */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--white); /* Optional: adds a separator line */
+    padding-top: 1.5rem;
+}
+
+.info-column {
+    flex: 1; /* Allows each column to share space equally */
+    text-align: center;
+    
+}
+
+.info-column h4 {
+    font-size: 1rem;
+    color: var(--white); /* Uses your theme's orange color */
+    margin-bottom: 0.75rem;
+    font-family: var(--mono);
+}
+
+.info-column p {
+    font-size: 1rem;
+    line-height: 2;
+    margin: 0;
+}
+
+/* Style for the tech tags, replacing the generic .button style */
+.tech-tag {
+    background-color: var(--white);
+    color: var(--plum);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+}
