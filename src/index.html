@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>About Me</title>
-    <meta charset="UTF-A">
+  <title>About Me</title>
+  <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="cursor.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Oxygen+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
-    
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Oxygen+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -25,10 +22,18 @@
         <h5>I also hold a Bachelor's degree in Computer Engineering from Mumbai University.</h5>
     </section>
 
-    <nav>
-        <ul>
+  <nav>
+    <button class="hamburger" aria-expanded="false" aria-controls="primary-menu" aria-label="Menu" data-cursor="pointer">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="primary-menu">
             <li>
                 </li>
+              <li>
+                <a href="https://druv-nagpal.vercel.app/" target="_blank" data-cursor="pointer">
+                    <h2>3D</h2>
+                </a>
+            </li>
             <li>
                 <a href="https://www.linkedin.com/in/druv-nagpal-285b08213" target="_blank" data-cursor="pointer">
                     <span class="fab fa-linkedin" aria-hidden="true"></span>
@@ -50,14 +55,17 @@
             <li><a href="https://www.dropbox.com/s/3z2hm5gu3v2lrfy/JenKramerCV.pdf?dl=0" target="_blank" class="button" data-cursor="pointer">Resume</a></li>
         </ul>
     </nav>
-</div>
+ </div>
+ 
+ <!-- Backdrop for mobile menu -->
+ <div id="menu-backdrop" class="backdrop" aria-hidden="true"></div>
 
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects-container">
 
     <div class="project-card">
-      <img src="/img/P1.png" alt="Screenshot Fun House">
+  <img src="/img/P1.png" alt="Screenshot Fun House" loading="lazy" decoding="async">
       <div class="project-details">
         <h3>Fun House</h3>
         <p>"Fun House" is a playful and interactive 3D web application designed to showcase real-time graphics manipulation. 
@@ -103,7 +111,7 @@
     </div>
 
     <div class="project-card">
-      <img src="/img/P2.png" alt="Screenshot of Haunted Island">
+  <img src="/img/P2.png" alt="Screenshot of Haunted Island" loading="lazy" decoding="async">
       <div class="project-details">
         <h3>Haunted Island</h3>
         <p>"Haunted Island" is an atmospheric 3D web experience that puts the user in control of a spooky, isolated scene.
@@ -150,7 +158,7 @@
     </div>
 
     <div class="project-card">
-      <img src="/img/P3.png" alt="Screenshot of Sunny Day">
+  <img src="/img/P3.png" alt="Screenshot of Sunny Day" loading="lazy" decoding="async">
       <div class="project-details">
         <h3>Sunny Day</h3>
         <p>The project showcases a procedurally animated field of grass that reacts to simulated wind, a realistic atmospheric sky, 
@@ -198,7 +206,7 @@
     </div>
 
     <div class="project-card">
-      <img src="/img/P2.png" alt="Screenshot of Project One">
+  <img src="/img/P2.png" alt="Screenshot of Project One" loading="lazy" decoding="async">
       <div class="project-details">
         <h3>Haunted Island</h3>
         <p>"Haunted Island" is an atmospheric 3D web experience that puts the user in control of a spooky, isolated scene.

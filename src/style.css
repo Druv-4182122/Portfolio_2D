@@ -7,19 +7,20 @@
     --magenta: #f7933c;
     --aqua: #32de84;
     --white: #f7f8fa;
-    --font-size: 1.3rem;
+    /* Use fluid base font size for responsiveness */
+    --font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
     --mono: "Oxygen mono", monospace;
     --sans: Oxygen, sans-serif;
-    --actualblack : black
+    --actualblack : black;
+    /* Layout widths */
+    --container-max: 1200px;
+    --content-pad: clamp(1rem, 2vw, 2rem);
 }
 
 
 /* border box model: https://css-tricks.com/box-sizing/ */
 
-html {
-    box-sizing: border-box;
-    
-}
+html { box-sizing: border-box; }
 
 /* html, body {
   scroll-behavior: smooth;
@@ -45,15 +46,14 @@ html.lenis {
     box-sizing: inherit;
 }
 
-
 /* generic styles for the page */
-
 body {
     padding: 0;
     margin: 0;
     font-family: var(--sans);
     color: var(--white);
     font-size: var(--font-size);
+    line-height: 1.6;
     overflow-x: hidden;
     background-color: #201F1E;
 }
@@ -77,19 +77,18 @@ a {
     color: var(--white);
 }
 
-img {
-    width: 100%;
-}
+img { max-width: 100%; height: auto; display: block; }
 
 /* NEW CONTAINER STYLE */
 .top-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 4rem 1rem 0 1rem;
-    gap: 8rem;
-    max-width: 1250px;
+    padding: 4rem var(--content-pad) 0 var(--content-pad);
+    gap: clamp(2rem, 6vw, 8rem);
+    max-width: var(--container-max);
     margin: 0 auto;
+    position: relative; /* for positioning hamburger on mobile */
 }
 
 
@@ -99,30 +98,17 @@ img {
     padding-bottom: 5rem;
 }
 
-#intro p {
-    font-size: 1rem;
-    line-height: 1.5;
-}
+#intro p { font-size: 1rem; line-height: 1.7; }
 
 #intro .name {
     font-family: var(--mono);
     font-size: 1rem;
 }
 
-.name span {
-    font-family: var(--sans);
-    font-size: 2.5rem;
-    color: var(--white);
+.name span { font-family: var(--sans); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); font-weight: 300; }
 
-    font-weight: 300;
-}
-
-#intro h2 {
-    font-size: 2rem;
-}
-#intro h5 {
-    line-height: 1.5;
-}
+#intro h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+#intro h5 { line-height: 1.7; font-weight: 400; }
 
 
 /* contact section */
@@ -133,6 +119,7 @@ nav {
     font-family: var(--mono);
     font-size: 80%;
     font-weight: bold;
+    position: relative;
 }
 
 nav h1 a {
@@ -147,7 +134,60 @@ nav ul {
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Hamburger button (mobile only) */
+.hamburger {
+    display: inline-flex; /* visible by default; hidden on desktop and iPad */
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 44px; /* square tap target */
+    height: 44px; /* square tap target */
+    border: none;
+    background: rgba(0,0,0,0.25);
+    backdrop-filter: saturate(120%) blur(2px);
+    padding: 0; /* center lines within square */
+    margin: 0;
+    cursor: pointer;
+    z-index: 1002; /* above backdrop */
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 0; /* prevent baseline affecting centering */
+    /* consistent spacing and sizing */
+    --bar-gap: 7px;
+    gap: 0; /* use margin-based spacing for wider browser support */
+    /* bar sizing */
+    --bar-w: 28px;
+    --bar-h: 3px;
+}
+.hamburger span {
+    position: relative;
+    display: block;
+    width: var(--bar-w);
+    height: var(--bar-h);
+    background: var(--white);
+    right: -8px;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center center;
+    will-change: transform;
+}
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(calc(var(--bar-h) + var(--bar-gap))) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(calc(-1 * (var(--bar-h) + var(--bar-gap)))) rotate(-45deg); }
+
+/* Slide-down panel for mobile menu */
+#primary-menu {
+        transition: transform 0.25s ease, opacity 0.25s ease;
+        transform-origin: top center;
+}
+@media (max-width: 1023px) {
+    nav:not(.open) #primary-menu { transform: translateY(-10px); opacity: 0; pointer-events: none; }
+    nav.open #primary-menu { transform: translateY(0); opacity: 1; pointer-events: auto; }
 }
 
 nav li:first-child {
@@ -171,17 +211,7 @@ nav a {
     display: block;
 }
 
-.button {
-
-    background-color: var(--white);
-    color: var(--plum);
-    padding: 10px;
-    border-radius: 10px;
-    display: block;
-    text-decoration: none;
-    /* font-family: var(--mono); */
-    font-weight: bold;
-}
+.button { background-color: var(--white); color: var(--plum); padding: 10px 14px; border-radius: 10px; display: block; text-decoration: none; font-weight: bold; }
 
 .button:hover {
     color: var(--plum);
@@ -190,11 +220,7 @@ nav a {
 
 /* footer section */
 
-.footer {
-    text-align: center;
-    padding: 2rem 0;
-
-}
+.footer { text-align: center; padding: 2rem var(--content-pad); }
 
 .footer ul {
     list-style-type: none;
@@ -219,83 +245,108 @@ nav a {
     }
 }
 
+/* When hamburger is active (phones and non-iPad tablets up to 1023px), make list vertical */
+@media (max-width: 1023px) {
+    .hamburger { display: inline-block; }
+    nav ul {
+        position: fixed;
+        top: 64px; /* below hamburger */
+        right: 16px;
+        width: min(92vw, 360px);
+        background: #1b1a19;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        z-index: 1001;
+    }
+    nav li:first-child { flex-basis: auto; text-align: left; }
+}
+
+/* Hide hamburger and show full menu on desktops only (>=1024px) */
+@media (min-width: 1024px) {
+    .hamburger { display: none !important; }
+    nav { display: block; }
+    nav #primary-menu { max-height: none !important; opacity: 1 !important; overflow: visible; pointer-events: auto; }
+}
+
+/* Force full menu when JS detects iPad/iPadOS */
+body.no-hamburger .hamburger { display: none !important; }
+body.no-hamburger nav #primary-menu { max-height: none !important; opacity: 1 !important; overflow: visible; pointer-events: auto; }
+
+/* Backdrop behind the mobile menu */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+}
+/* Show backdrop when menu is open */
+body.menu-open .backdrop { opacity: 1; pointer-events: auto; }
+
+/* Lock body scroll when menu open (optional, JS adds a class) */
+body.menu-open { overflow: hidden; }
+
+/* iPad/no-hamburger override: ensure normal inline horizontal menu */
+body.no-hamburger nav ul {
+    position: static !important;
+    width: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: clamp(1rem, 2.5vw, 2rem) !important;
+}
+
 /* --- Projects Section --- */
-#projects {
-    /* padding: 4rem 1rem; */
-    max-width: 1200px;
-    margin: 0 auto;
+#projects { padding: 2rem var(--content-pad) 4rem; max-width: var(--container-max); margin: 0 auto; }
+
+#projects h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 2rem; }
+
+.projects-container { display: grid; grid-template-columns: 1fr; gap: clamp(1rem, 2.5vw, 2rem); }
+
+@media (min-width: 700px) {
+    .projects-container { grid-template-columns: 1fr; }
 }
 
-#projects h2 {
-    font-size: 2.5rem;
-    /* text-align: center; */
-    margin-bottom: 3rem;
-}
-
-.projects-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
+@media (min-width: 1024px) {
+    .projects-container { grid-template-columns: 1fr; }
 }
 
 /* Project Card Styling */
 .project-card {
-    background-color: var(--plum); /* A slightly lighter background than the page */
-    border-radius: 25px;
-    overflow: hidden; /* This makes the image corners conform to the border-radius */
+    background-color: var(--plum);
+    border-radius: 18px;
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 1400px; /* Adjust as needed */
-    border: 5px solid var(--white);
+    border: 3px solid var(--white);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card img {
-    width: 100%;
-    padding: 10px;
-    border-radius: 25px;
-    display: block; /* Removes any extra space below the image */
-}
+.project-card img { width: 100%; padding: clamp(8px, 1.2vw, 12px); border-radius: 18px; display: block; }
 
-.project-details {
-    padding: 1.5rem;
-}
+.project-details { padding: clamp(1rem, 2.5vw, 1.5rem); }
 
-.project-details h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--white); /* Using your orange color for titles */
-}
+.project-details h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); margin-bottom: 0.75rem; color: var(--white); }
 
-.project-details p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
+.project-details p { font-size: 1rem; line-height: 1.75; margin-bottom: 1rem; }
 
 /* Tech Stack Tags */
-.tech-stack {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 0 1.5rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-}
+.tech-stack { list-style-type: none; padding: 0; margin: 0 0 1rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
 
 /* Project Links (Live Demo, GitHub) */
-.project-links {
-    display: flex;
-    gap: 1rem;
-}
+.project-links { display: flex; gap: 1rem; }
 
-.project-links a {
-    color: var(--white);
-    font-size: 2rem;
-    transition: color 0.3s ease;
-}
+.project-links a { color: var(--white); font-size: clamp(1.5rem, 3vw, 2rem); transition: color 0.3s ease; }
 
 /* .project-links a:hover {
     color: var(--dkblue);
@@ -303,43 +354,40 @@ nav a {
 
 /* --- New Project Info Columns --- */
 .project-info-columns {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-flow: row wrap;
-    gap: 1.5rem; /* Adds space between columns */
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    border-top: 1px solid var(--white); /* Optional: adds a separator line */
-    padding-top: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem 1.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-top: 1px solid var(--white);
+        padding-top: 1rem;
 }
 
-.info-column {
-    flex: 1; /* Allows each column to share space equally */
-    text-align: center;
-    
+@media (min-width: 640px) {
+    .project-info-columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-.info-column h4 {
-    font-size: 1rem;
-    color: var(--white); /* Uses your theme's orange color */
-    margin-bottom: 0.75rem;
-    font-family: var(--mono);
+@media (min-width: 900px) {
+    .project-info-columns { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 
-.info-column p {
-    font-size: 1rem;
-    line-height: 2;
-    margin: 0;
-}
+.info-column { text-align: center; padding: 0 0.25rem; }
+
+.info-column h4 { font-size: 0.95rem; color: var(--white); margin-bottom: 0.5rem; font-family: var(--mono); }
+
+.info-column p { font-size: 0.95rem; line-height: 1.8; margin: 0; }
 
 /* Style for the tech tags, replacing the generic .button style */
-.tech-tag {
-    background-color: var(--white);
-    color: var(--plum);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
+.tech-tag { background-color: var(--white); color: var(--plum); padding: 6px 10px; border-radius: 8px; font-size: 0.95rem; font-weight: bold; text-decoration: none; }
+
+/* Responsive layout tweaks */
+@media (max-width: 900px) {
+    .top-container { flex-direction: column; align-items: stretch; gap: 2rem; }
+    nav ul { justify-content: flex-start; }
 }
+
+@media (pointer: coarse), (hover: none) {
+    /* Hide custom cursor on touch devices */
+    #cursor, #cursor-border { display: none !important; }
+}
+.hamburger span + span { margin-top: var(--bar-gap); }
