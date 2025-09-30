@@ -139,14 +139,14 @@ nav ul {
 
 /* Hamburger button (mobile only) */
 .hamburger {
-    display: inline-flex; /* visible by default; hidden on desktop and iPad */
+    display: inline-flex; 
     position: fixed;
     top: 16px;
     right: 16px;
     width: 44px; /* square tap target */
     height: 44px; /* square tap target */
     border: none;
-    background: rgba(0,0,0,0.25);
+    background: #201F1E;
     backdrop-filter: saturate(120%) blur(2px);
     padding: 0; /* center lines within square */
     margin: 0;
@@ -167,6 +167,7 @@ nav ul {
 .hamburger span {
     position: relative;
     display: block;
+    right: -7px;
     width: var(--bar-w);
     height: var(--bar-h);
     background: var(--white);
