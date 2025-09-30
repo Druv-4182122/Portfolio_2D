@@ -170,7 +170,6 @@ nav ul {
     width: var(--bar-w);
     height: var(--bar-h);
     background: var(--white);
-    right: -8px;
     border-radius: 2px;
     transition: transform 0.25s ease, opacity 0.25s ease;
     transform-origin: center center;
