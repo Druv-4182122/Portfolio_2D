@@ -146,8 +146,9 @@ nav ul {
     width: 44px; /* square tap target */
     height: 44px; /* square tap target */
     border: none;
-    background: #201F1E;
-    backdrop-filter: saturate(120%) blur(2px);
+    background: transparent;            /* no visible background */
+    backdrop-filter: none;              /* remove glass effect */
+    -webkit-backdrop-filter: none;
     padding: 0; /* center lines within square */
     margin: 0;
     cursor: pointer;
@@ -167,7 +168,6 @@ nav ul {
 .hamburger span {
     position: relative;
     display: block;
-    right: -7px;
     width: var(--bar-w);
     height: var(--bar-h);
     background: var(--white);
@@ -175,6 +175,12 @@ nav ul {
     transition: transform 0.25s ease, opacity 0.25s ease;
     transform-origin: center center;
     will-change: transform;
+}
+
+/* Optional: keyboard focus ring without showing a background */
+.hamburger:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
 }
 .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(calc(var(--bar-h) + var(--bar-gap))) rotate(45deg); }
 .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
