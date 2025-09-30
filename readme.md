@@ -4,7 +4,7 @@ A fast, responsive 2D portfolio built with vanilla HTML/CSS/JS and Vite. It high
 
 ## 🌐 Live
 
-(https://druv-nagpal-2d.vercel.app/)
+https://druv-nagpal-2d.vercel.app/
 
 ## ✨ Features
 
